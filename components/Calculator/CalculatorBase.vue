@@ -12,13 +12,15 @@
            v-model="userInput">
 
     <div class="grid grid-rows-4 grid-cols-4 gap-1">
-      <CalculatorButton type="tertiary" @click="clearUserInput" class="text-lg">AC</CalculatorButton>
-      <CalculatorButton v-for="i in [9, 8, 7]" @click="handleButton">{{ i }}</CalculatorButton>
+      <CalculatorButton type="tertiary" @click="clearUserInput" class="col-span-2">AC</CalculatorButton>
+      <CalculatorButton @click="clearUserInput" class="col-span-2">ON</CalculatorButton>
       <CalculatorButton type="secondary" @click="handleButton">/</CalculatorButton>
-      <CalculatorButton v-for="i in [6, 5, 4]" @click="handleButton">{{ i }}</CalculatorButton>
+      <CalculatorButton v-for="i in [9, 8, 7]" @click="handleButton">{{ i }}</CalculatorButton>
       <CalculatorButton type="secondary" @click="handleButton">*</CalculatorButton>
-      <CalculatorButton v-for="i in [3, 2, 1]" @click="handleButton">{{ i }}</CalculatorButton>
+      <CalculatorButton v-for="i in [6, 5, 4]" @click="handleButton">{{ i }}</CalculatorButton>
       <CalculatorButton type="secondary" @click="handleButton">+</CalculatorButton>
+      <CalculatorButton v-for="i in [3, 2, 1]" @click="handleButton">{{ i }}</CalculatorButton>
+      <CalculatorButton type="secondary" @click="handleButton">-</CalculatorButton>
       <CalculatorButton v-for="i in [0]" class="col-span-2" @click="handleButton">{{ i }}</CalculatorButton>
       <CalculatorButton type="secondary" @click="calculateUserInput">=</CalculatorButton>
     </div>
