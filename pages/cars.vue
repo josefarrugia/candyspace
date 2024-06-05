@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import {gsap} from "gsap";
-import {onMounted} from "vue";
 import {
   AdjustmentsHorizontalIcon,
   CurrencyPoundIcon,
@@ -8,8 +7,9 @@ import {
   MagnifyingGlassCircleIcon,
   PlusCircleIcon
 } from "@heroicons/vue/16/solid";
+import {useCarStore} from "~/stores/cars";
 
-const cars = ref();
+const storeCar = useCarStore();
 const filterIsOpen = ref(false);
 
 // Filter Options
@@ -18,7 +18,7 @@ const filterYear = ref(2000);
 const filterBrand = ref('');
 
 const filteredResults = computed(() => {
-  return cars.value
+  return storeCar.getCars
       .filter(item => item.price > filterPrice.value && item.year > filterYear.value && item.brand.toLowerCase().includes(filterBrand.value.toLowerCase()));
 })
 const formattedFilterPrice = computed(() => `£${Number(filterPrice.value).toLocaleString()}`)
@@ -41,22 +41,21 @@ const enter = (el, done) => {
   })
 }
 
-const toggleExpand = (el) => {
+const toggleExpand = () => {
   filterIsOpen.value = !filterIsOpen.value;
 }
 
-onMounted(() => {
-  // @TODO: use pinia state management
+if (process.client) {
   fetch("/api/cars")
       .then((res) => res.json())
       .then((json) => {
-        cars.value = json.cars
+        storeCar.updateCars(json.cars)
       })
-});
+}
 </script>
 
 <template>
-  <section v-if="cars" class="bg-gray-50 min-h-screen py-8 font-noto-sans">
+  <section v-if="storeCar.getCars" class="bg-gray-50 min-h-screen py-8 font-noto-sans">
     <div class="container mx-auto px-4">
       <div class="flex flex-col lg:flex-row gap-4">
         <div class="lg:basis-2/12 relative">
