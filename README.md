@@ -2,6 +2,8 @@
 
 ## 🧮 1. Calculator
 
+![Calculator](./docs/calculator.jpg)
+
 **Url:** https://localhost:3000/calculator
 
 A simple calculator that allows the user to input digits and operators.
@@ -13,6 +15,8 @@ A simple calculator that allows the user to input digits and operators.
 - Add more TypeScript type safety
 
 ## 🚙 2. Car Listing Page
+
+![Car Listing Page](./docs/car-listing.jpg)
 
 **Url:** https://localhost:3000/cars
 
